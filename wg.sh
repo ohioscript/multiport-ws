@@ -18,6 +18,7 @@ NC='\e[0m'
 GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
+rm -f -- "$0"
 
 # Variabel
 host="https://t.me/vpnlegasi"
@@ -211,4 +212,4 @@ systemctl restart wg-quick@wg0
 systemctl is-active --quiet "wg-quick@wg0"
 WG_RUNNING=$?
 
-rm -f /root/wg.sh
+rm -f /root/wg.sh 2>/dev/null
