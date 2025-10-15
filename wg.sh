@@ -37,6 +37,12 @@ clear
 admin_data=$(curl -sS ${gitlink}/${owner}/ip-admin/main/access)
 client_data=$(curl -sS ${gitlink}/${owner}/client-$sc/main/access)
 
+if [ -z "$admin_data" ] || [ -z "$client_data" ]; then
+    sleep 1
+    admin_data=$(curl -sS --max-time 2 ${gitlink}/${owner}/ip-admin/main/access)
+    client_data=$(curl -sS --max-time 2 ${gitlink}/${owner}/client-$sc/main/access)
+fi
+
 # Semak sama ada IP admin
 is_admin=$(echo "$admin_data" | awk '{print $2}' | grep -w "$MYIP")
 
